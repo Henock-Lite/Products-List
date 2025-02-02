@@ -1,0 +1,92 @@
+
+async function fetchMeal() {
+  try {
+    const res = await fetch("data.json");
+    Data = await res.json(); // Assigne les données récupérées.
+    displayFetch();
+    initButtons();
+  } catch (error) {
+    console.error("Erreur lors du fetch des données :", error);
+  }
+}
+
+
+
+
+
+function initButtons() {
+  cardsContainer.addEventListener("click", (event) => {
+    if (event.target.closest(".btn-add")) {
+      const btnAdd = event.target.closest(".btn-add");
+      const index = btnAdd.dataset.index;
+
+      // Crée le bouton de remplacement.
+      const button = document.createElement("button");
+      button.classList.add("btn-increment");
+      button.innerHTML = `
+        <div class="Elementbtn-increment">
+          <div class="parent-icon">
+            <img src="./assets/images/icon-decrement-quantity.svg" class="icon-increment" />
+          </div>
+          <span>1</span>
+          <div class="parent-icon">
+            <img src="./assets/images/icon-increment-quantity.svg" class="icon-increment" />
+          </div>
+        </div>
+      `;
+
+      // Remplace le bouton existant.
+      btnAdd.parentNode.replaceChild(button, btnAdd);
+
+      // Met en évidence l'image associée.
+      const imgData = document.querySelector(`.imgItem[data-img='${index}']`);
+      if (imgData) {
+        imgData.style.border = "solid 3px hsl(16, 69%, 49%)";
+      }
+    }
+  });
+}
+
+// Lance le fetch lorsque la page est chargée.
+window.addEventListener("load", fetchMeal);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+btnadd.forEach((btnadd, index) => {
+    let button = document.createElement("button");
+    button.innerHTML = buttonInnerhtml;
+    button.classList.add("btn-increment");
+
+    btnadd.addEventListener("click", () => {
+      btnadd.parentNode.replaceChild(button, btnadd);
+      let imgdata = document.querySelector(`.imgItem[data-img='${index}']`);
+
+      // console.log(btnIncrement++);
+
+      if (imgdata) {
+        imgdata.style.border = "solid 3px  hsl(16, 69%, 49%)";
+      }
+
+    });
+
+
+
+    
+  });
+}

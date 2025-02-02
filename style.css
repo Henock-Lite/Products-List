@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "RedHat";
+  src: url("./assets/fonts/RedHatText-VariableFont_wght.ttf") format("truetype");
+  font-style: normal, italic;
+  font-weight: 400 700;
+}
+
+body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px;
+  height: 100%;
+  font-family: "RedHat", sans-serif;
+  font-weight: normal;
+  background: hsl(20, 50%, 98%);
+  font-size: 16px;
+}
+button {
+  all: unset;
+  border-radius: 1500px;
+  border: solid 1px rgb(193, 191, 191);
+  font-size: 0.9em;
+  background: white;
+}
+
+li {
+  list-style: none;
+  text-transform: capitalize;
+  font-size: 0.8em;
+  padding: 7px 0;
+  font-weight: 600;
+  color: hsl(14, 65%, 9%);
+}
+.contenaire {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 15px;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.main-title {
+  padding: 14px 0;
+}
+
+.cards-contenaire {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.cards-foods {
+  width: 100%;
+  height: 48%;
+  flex: 1 0 33.33%;
+  min-width: 200px;
+  padding: 5px;
+}
+
+.imgItem {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: solid 3px transparent;
+  z-index: -1;
+  transition: ease-out 0.4s;
+}
+
+.btn-add,
+.btn-increment {
+  width: clamp(90px, 60%, 450px);
+  padding: 8px;
+  transform: translateY(-25px);
+  background: white;
+  color: hsl(14, 65%, 9%);
+  font-weight: 600;
+  display: block;
+  margin: 0 auto;
+  z-index: 200;
+  cursor: pointer;
+  transition: ease width 0.4s;
+}
+
+.contenaire-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-increment {
+  background: hsl(16, 69%, 49%);
+  span {
+    color: white;
+  }
+}
+
+.Elementbtn-increment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.parent-icon {
+  border: solid 1px white;
+  border-radius: 15000px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-increment {
+  width: 100%;
+  height: 100%;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.icon-add-to-cart {
+  width: 15px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.down-liste {
+  text-transform: capitalize;
+  p {
+    color: hsl(7, 20%, 60%);
+    font-weight: 400;
+    margin: 1px 0;
+  }
+  b {
+    font-weight: 600;
+    color: hsl(14, 65%, 9%);
+  }
+  .price {
+    color: hsl(16, 69%, 49%);
+    font-weight: 500;
+  }
+}
+
+.cart-contenaire {
+  background: white;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.236);
+  border-radius: 8px;
+}
+
+.title-cart {
+  color: hsl(16, 69%, 49%);
+  padding-bottom: 15px;
+}
+
+.list-items {
+  border-bottom: 1px solid rgb(236, 234, 234);
+  padding-bottom: 10px;
+}
+
+.name-meal {
+  color: hsl(14, 65%, 9%);
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.calcul-meal {
+  display: flex;
+  gap: 14px;
+  color: hsl(7, 20%, 60%);
+  p {
+    font-size: 0.8em;
+  }
+  .less-plus {
+    text-align: left;
+    color: hsl(16, 69%, 49%);
+  }
+}
+
+.Order-contenaire {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+.order {
+  text-transform: capitalize;
+}
+.order-price {
+  color: hsl(14, 65%, 9%);
+  font-weight: 700;
+}
+
+.carbon-contenair {
+  width: 100%;
+  height: 100%;
+  background: hsl(13, 31%, 94%);
+  padding: 8px;
+  border-radius: 5px;
+  .img-carbone {
+    width: 5px;
+    height: 5px;
+    object-fit: cover;
+  }
+  .carbon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      font-size: 0.7em;
+      height: 100%;
+    }
+    span {
+      color: hsl(159, 69%, 38%);
+      font-weight: 600;
+    }
+  }
+}
+
+.btn-confirm {
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+  button {
+    width: 100%;
+    text-transform: capitalize;
+    padding: 10px 0;
+    background: hsl(16, 69%, 49%);
+    color: white;
+    cursor: pointer;
+    transition: background 0.5s;
+
+    &:hover {
+      background: hwb(16 2% 42%);
+    }
+  }
+}
