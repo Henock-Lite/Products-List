@@ -33,50 +33,67 @@ function displayfecth() {
 
 function ButtonInnit() {
   let buttonInnerhtml = `
-  <div class="Elementbtn-increment">
-        <div class="parent-icon" id= "icon-incrementMoin">
+   <div class="Elementbtn-increment">
+           <div class="parent-icon" id= "iconincrementMoin" data-moin="moin">
              <img
                 src="./assets/images/icon-decrement-quantity.svg"
               />
-          </div>
-      <span>1</span>
-       <div class="parent-icon" id="icon-incrementPlus">
-         <img
+            </div>
+              <span id ="displaynumber">1</span>
+          <div class="parent-icon  plus" id="iconincrementPlus"  data-plus="plus">
+             <img
            src="./assets/images/icon-increment-quantity.svg"
            alt=""
-          />
-        </div>
+            />
+          </div>
    </div>
               `;
 
   cardsContenaire.addEventListener("click", (e) => {
-
     if (e.target.closest(".btn-add")) {
       const btnAdd = e.target.closest(".btn-add");
       const index = btnAdd.dataset.btn;
-      // console.log(index);
-      
       let button = document.createElement("button");
+      let Imgborder = document.querySelector(`.imgItem[data-img="${index}"]`);
+
+      // console.log(index);
 
       button.setAttribute("data-button", `"${index}"`);
       button.innerHTML = buttonInnerhtml;
       button.classList.add("btn-increment");
       btnAdd.parentNode.replaceChild(button, btnAdd);
-      let Imgborder = document.querySelector(`.imgItem[data-img="${index}"]`);
-
+      
       if (Imgborder) {
         Imgborder.style.border = "solid 3px hsl(16, 69%, 49%)";
       }
-    }
-
-    if (e.target.closest(".parent-icon")) {
-      const IconBtnincre = e.target.closest(".parent-icon");
-
-      // console.log(indexes);
+    
+      // let moin = document.querySelectorAll(`[data-moin="moin"]`);
       
-      
-      
+      // moin.forEach((moin) => {
+        //   moin.addEventListener("click", (e) => {
+          //     let parent = e.target.closest(".Elementbtn-increment");
+      //     let displaydecrement = parent.querySelector("#displaynumber");
+      //     if (displaydecrement.textContent != 0) {
+      //       let decrementation = displaydecrement.textContent;
+      //       decrementation--;
+      //       displaydecrement.textContent = `${decrementation}`;
+      //     }
+      //   });
+      // });
     }
   });
+
+  cardsContenaire.addEventListener("click", (e) => {
+    if (e.target.closest(`[data-plus="plus"]`)) {
+      let btnPlus = e.target.closest(`[data-plus="plus"]`);
+      let parent = btnPlus.closest(".Elementbtn-increment");
+      let displayincrement = parent.querySelector("#displaynumber");
+      let increment = parseInt(displayincrement.textContent);
+      increment++;
+      displayincrement.textContent = `${increment}`;
+    }
+  });
+
 }
+
 window.addEventListener("load", fecthMeal);
