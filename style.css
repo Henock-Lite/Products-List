@@ -105,6 +105,10 @@ main {
   }
 }
 
+
+.parent-btn{
+  height: 25px;
+} 
 .Elementbtn-increment {
   display: flex;
   justify-content: space-between;
@@ -157,7 +161,7 @@ main {
   }
 }
 
-.cart-contenaire {
+.card-order {
   background: white;
   width: 100%;
   padding: 10px;
