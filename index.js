@@ -1,17 +1,26 @@
 const cardsContenaire = document.querySelector(".cards-contenaire");
 const cartcontenaireListItem = document.querySelector(".cart-contenaire");
 const listItems = document.querySelector(".list-items");
+let Data;
 
 async function fecthMeal() {
-  const res = await fetch("data.json");
-  Data = await res.json();
-  displayfecth();
-  ButtonInnit();
-  console.log(Data);
-  addcart();
+  try {
+    const res = await fetch("data.json");
+
+    if (!res.ok) {
+      throw new Error(`Erreur HTTP: ${res.status} ${res.statusText}`);
+    }
+
+    Data = await res.json();
+    displayFetch();
+    ButtonInit();
+    addcart();
+  } catch (error) {
+    console.error("Erreur lors du chargement des données :", error);
+  }
 }
 
-function displayfecth() {
+function displayFetch() {
   cardsContenaire.innerHTML = Data.map((data, index) => {
     return `
   <div class= 'cards-foods' id=${index}>
@@ -49,7 +58,7 @@ function addcart(btnaddValue) {
   });
 }
 
-function ButtonInnit() {
+function ButtonInit() {
   let buttonInnerhtml = `
    <div class="Elementbtn-increment">
            <div class="parent-icon" id= "iconDecrementMoin" data-moin="moin">
