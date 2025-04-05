@@ -187,7 +187,6 @@ main {
 }
 
 .calcul-meal {
-  display: flex;
   gap: 14px;
   color: hsl(7, 20%, 60%);
   p {
