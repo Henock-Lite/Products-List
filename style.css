@@ -105,10 +105,9 @@ main {
   }
 }
 
-
-.parent-btn{
+.parent-btn {
   height: 25px;
-} 
+}
 .Elementbtn-increment {
   display: flex;
   justify-content: space-between;
@@ -132,7 +131,7 @@ main {
 .icon-increment {
   width: 100%;
   height: 100%;
-  img{
+  img {
     width: 100%;
     height: 100%;
   }
@@ -196,6 +195,10 @@ main {
     text-align: left;
     color: hsl(16, 69%, 49%);
   }
+}
+
+.quantity {
+  color: hsl(16, 69%, 49%);
 }
 
 .Order-contenaire {

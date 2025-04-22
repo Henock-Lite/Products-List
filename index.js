@@ -40,25 +40,6 @@ function displayFetch() {
     `;
   }).join("");
 }
-
-function addcard(btnaddValue) {
-  const AllFoodscards = document.querySelectorAll(".cards-foods");
-  const calculmeal = document.querySelector(".calcul-meal");
-  const divChidlCalculmeal = document.createElement("div");
-
-  AllFoodscards.forEach((cardsFoods, index) => {
-    if (cardsFoods.id == btnaddValue) {
-      const divCalculmeal = calculmeal.appendChild(divChidlCalculmeal);
-      const listname = document.createElement("li");
-      const listprice = document.createElement("li");
-      let listnamefood = divCalculmeal.appendChild(listname);
-      let listcalculfood = divCalculmeal.appendChild(listprice);
-      listnamefood.textContent = `${Data[index].name}`;
-      listcalculfood.setAttribute("id", `${index}`);
-    }
-  });
-}
-
 function ButtonInit() {
   cardsContenaire.addEventListener("click", (e) => {
     const btnAdd = e.target.closest(".btn-add");
@@ -70,7 +51,6 @@ function ButtonInit() {
       button.setAttribute("data-button", `${index}`);
       button.classList.add("btn-increment");
 
-      // Générer le contenu des boutons +/-
       button.innerHTML = `
         <div class="Elementbtn-increment">
           <div class="parent-icon" id="iconDecrementMoin" data-moin="moin">
@@ -87,6 +67,7 @@ function ButtonInit() {
       if (Imgborder) {
         Imgborder.style.border = "solid 3px hsl(16, 69%, 49%)";
       }
+
       addcard(index);
     }
   });
@@ -108,10 +89,21 @@ function addGlobalListeners() {
           Data[index].btnIncrement--;
         }
 
-        // Mettre à jour le texte affiché
         const displayincrement = parent.querySelector("#displaynumber");
         if (displayincrement) {
           displayincrement.textContent = Data[index].btnIncrement;
+
+          //  Mettre à jour le panier s’il existe
+          const itemQty = document.querySelector(`#qty-${index}`);
+          if (itemQty) {
+            itemQty.textContent = Data[index].btnIncrement;
+          }
+        }
+        const itemTotal = document.querySelector(`#total-${index}`);
+        if (itemTotal) {
+          const price = Data[index].price;
+          const qty = Data[index].btnIncrement;
+          itemTotal.textContent = `${(price * qty).toFixed(2)}$`;
         }
       }
     }
@@ -120,12 +112,36 @@ function addGlobalListeners() {
 
 function getIndexFromElement(el) {
   const parentBtn = el.closest(".btn-increment");
-  
   if (parentBtn) {
     const index = parentBtn.getAttribute("data-button");
     return parseInt(index);
   }
   return null;
+}
+function addcard(btnaddValue) {
+  const calculmeal = document.querySelector(".calcul-meal");
+
+  // Empêche les doublons dans le panier
+  if (document.querySelector(`#item-${btnaddValue}`)) return;
+
+  const divChidlCalculmeal = document.createElement("div");
+  divChidlCalculmeal.id = `item-${btnaddValue}`;
+
+  const listItem = document.createElement("li");
+
+  
+  listItem.innerHTML = `
+    <div class="meal-name">${Data[btnaddValue].name}</div>
+    <span>x</span>
+    <span id="qty-${btnaddValue}">${Data[btnaddValue].btnIncrement}</span> =
+    <span class="meal-price">${Data[btnaddValue].price}$</span> x
+    <span id="total-${btnaddValue}">${
+    Data[btnaddValue].price * Data[btnaddValue].btnIncrement
+  }$</span>
+  `;
+
+  divChidlCalculmeal.appendChild(listItem);
+  calculmeal.appendChild(divChidlCalculmeal);
 }
 
 window.addEventListener("load", fecthMeal);
